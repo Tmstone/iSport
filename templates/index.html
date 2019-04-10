@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+     <head>
+          <meta charset="utf-8">
+          <meta name="iSpring" content="Free Pickup Game Finder and Organizer.">
+          <title>iSpring</title>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+          <script src="{{ url_for('static', filename='script.js') }}"></script>
+     </head>
+     <body>
+          <div class="container">
+               <div class="header">
+                    <div class="row">
+                         <div class="col-8">
+                            <h3 class ="display-3 d-inline-block">iSport</h3>
+                            <p>Free Pickup Game Finder and Organizer</p>
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                     {% for message in messages %}
+                                          <p style="color: red">{{message}}</p>
+                                     {% endfor %}
+                                 {% endif %}
+                           {% endwith %}
+                         </div>
+                         <div class="col-4">
+                              <button type="button" id="rBtn" class="btn btn-sm btn-primary">Register</button>
+                              <button type="button" id="lBtn" class="btn btn-sm btn-success">Login</button>
+                              <!-- <a class="btn btn-sm btn-primary" href="#" >Register</a> -->
+                              <!-- <a class="d-inline-block btn btn-sm btn-success" href="#">Login</a> -->
+                         </div>
+                    </div>
+                </div>
+               <div class="row">
+                    <div class="col-8 rForm">
+                         <h4>Register</h4>
+                         <form class="" action="/new_user" method="post">
+                              <div class="form-group">
+                                   <label for="first_name">First Name</label>
+                                   <input type="text" class="form-control" name="first_name" value="">
+                              </div>
+                              <div class="form-group">
+                                   <label for="last_name">Last Name</label>
+                                   <input type="text" class="form-control" name="last_name" value="">
+                              </div>
+                              <div class="form-group">
+                                   <label for="email">Email</label>
+                                   <input type="email" class="form-control" name="email" value="">
+                              </div>
+                              <div class="form-group">
+                                   <label for="password">Password</label>
+                                   <input type="password" class="form-control" name="password" value="">
+                              </div>
+                              <div class="from-group">
+                                   <label for="birthday">Birthdate</label>
+                                   <input type="date" class="form-control" name="bday" value="">
+                              </div>
+                              <input type="submit" class="btn btn-primary" value="Register">
+                         </form>
+                    </div>
+                    <div class="col-4 lForm">
+                         <h4>Login</h4>
+                         <form class="" action="/login" method="post">
+                              <div class="form-group">
+                                   <label for="email">Email</label>
+                                   <input type="email" class="form-control" name="email" value="">
+                              </div>
+                              <div class="form-group">
+                                   <label for="password">Password</label>
+                                   <input type="password" class="form-control" name="password" value="">
+                              </div>
+                              <input type="submit" class="btn btn-success" value="Login">
+                         </form>
+                    </div>
+               </div>
+               <div class="section">
+                    <h1 class="h5">Events near you.</h1>
+                    <div class="row">
+                         <div class="col-8">
+                              <form class="" action="#" method="post">
+                                   <div class="form-group mb-2">
+                                        <!-- <label for="search">Search</label> -->
+                                        <input type="text" class="form-control inline-block" name="search" value="Enter a City or Zip Code">
+                                   </div>
+                                   <input type="submit" class="btn btn-sm btn-success inline-block" value="Search">
+                              </form>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </body>
+</html>

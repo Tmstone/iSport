@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+     <head>
+          <meta charset="utf-8">
+          <meta name="iSpring" content="Free Pickup Game Finder and Organizer customized for you.">
+          <title>iSport | Dashboard</title>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+          <script src="{{ url_for('static', filename='script.js') }}"></script>
+     </head>
+     <body>
+          <div class="container">
+               <div class="header">
+                    <div class="row">
+                         <div class="col-8">
+                             <h1 class="h4 text-muted">iSport</h1>
+                             <ul>
+                                  {% for item in nav.top %}
+                                  <li class="{{ 'active' if item.is_active else '' }}">
+                                      <a href="{{ item.url }}">{{ item.label }}</a>
+                                 </li>
+                                 {% endfor %}
+                            </ul>
+                         </div>
+                         <div class="col-4">
+                              <a href="#" class="btn btn-sm btn-primary">Edit Profile</a>
+                              <a href="/logout" class="btn btn-sm btn-warning">Logout</a>
+                         </div>
+                    </div>
+               </div>
+               <div class="section">
+                    <h1 class="">Welcome {{name}}</h1>
+                    <h4 class="h6 text-muted">Today is and you have event today:</h4>
+                    <table class="table">
+                         <thead>
+                              <tr>
+                                   <th scope="col">Event Name</th>
+                                   <th scope="col">Location</th>
+                                   <th scope="col">Attendees</th>
+                                   <th scope="col">Time</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              {% for event in events %}
+                                   <tr>
+                                       <td>{{event['item']}}</td>
+                                       <td>{{event['created_at']}}</td>
+                                       <td>{{event['attendees']}}</td>
+                                       <td>{{event['time']}}</td>
+                                   </tr>
+                               {% endfor %}
+                         </tbody>
+                    </table>
+               </div>
+               <div class="section">
+                    <h4 class="h6 text-muted">Here are your joined future events:</h4>
+                    <table class="table">
+                         <thead>
+                              <tr>
+                                   <th scope="col">Event Name</th>
+                                   <th scope="col">Location</th>
+                                   <th scope="col">Attendees</th>
+                                   <th scope="col">Date</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              {% for fevent in fevents %}
+                                   <tr>
+                                       <td>{{fevent['item']}}</td>
+                                       <td>{{fevent['wisher']}}</td>
+                                       <td>{{fevent['wish_created']}}</td>
+                                       <td>{{fevent['created_at']}}</td>
+                                   </tr>
+                               {% endfor %}
+                         </tbody>
+                    </table>
+               </div>
+          </div>
+     </body>
+</html>
