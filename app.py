@@ -25,8 +25,8 @@ PW_REGEX = re.compile('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@
 #Navaigation
 nav.Bar('top', [
     nav.Item('Home', 'members'),
-    #nav.Item('New', 'new'),
-    #nav.Item('Search', 'search'),
+    nav.Item('New', 'new_event'),
+    nav.Item('Search', 'search'),
     #nav.Item('Account','account'),
 ])
 
@@ -108,6 +108,16 @@ def members():
         #return redirect('/')
 
     return render_template('dashboard.html')
+
+#new event method & route
+@app.route('/new')
+def new_event():
+    return render_template('new.html')
+
+#search for Events
+@app.route('/search')
+def search():
+    return render_template('search.html')
 
 @app.route('/logout')
 def logout():
