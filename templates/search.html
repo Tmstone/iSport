@@ -30,6 +30,48 @@
              </div>
              <div class="section">
                   <h1 class="h3 text-muted">{{name}} | Search for Events</h1>
+                  <form class="form-inline" action="#" method="post">
+                       <div class="form-group mx-sm-3 mb-2">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" name="search" class="form-control" value="Search">
+                       </div>
+                       <div class="form-group">
+                            <label for="search_opt">Search by</label>
+                            <select class="form-control mx-sm-3 mb-2" name="search_opt">
+                                      {% for event in events %}
+                                      <option value="{{event['id']}}">{{event['name']}}</option>
+                                      {% endfor %}
+                             </select>
+                       </div>
+                       <input type="submit" class="btn btn-primary" value="Search">
+                  </form>
+             </div>
+             <div class="section">
+                  <table class="table">
+                       <thead>
+                            <tr>
+                                 <th scope="col">Event Name</th>
+                                 <th scope="col">Location</th>
+                                 <th scope="col">Attendees</th>
+                                 <th scope="col">Date</th>
+                                 <th scope="col">Creator</th>
+                                 <th scope="col">Action</th>
+                            </tr>
+                       </thead>
+                       <tbody>
+                            {% for fevent in fevents %}
+                                 <tr>
+                                      <!-- update these -->
+                                     <td>{{fevent['item']}}</td>
+                                     <td>{{fevent['wisher']}}</td>
+                                     <td>{{fevent['wish_created']}}</td>
+                                     <td>{{fevent['created_at']}}</td>
+                                     <td>{{fevent['created_at']}}</td>
+                                     <td>{{fevent['created_at']}}</td>
+                                 </tr>
+                             {% endfor %}
+                       </tbody>
+                  </table>
              </div>
          </div>
      </body>
