@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+     <head>
+          <meta charset="utf-8">
+          <meta name="iSpring" content="Free Pickup Game Finder and Organizer customized for you.">
+          <title>iSport | Edit Account</title>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+          <script src="{{ url_for('static', filename='script.js') }}"></script>
+     </head>
+     <body>
+          <div class="container">
+               <div class="header">
+                   <div class="row">
+                        <div class="col-12">
+                            <h1 class="h4 text-muted">iSport</h1>
+                            <ul>
+                                 {% for item in nav.top %}
+                                 <li class="{{ 'active' if item.is_active else '' }}">
+                                     <a href="{{ item.url }}">{{ item.label }}</a>
+                               </li>
+                               {% endfor %}
+                          </ul>
+                        </div>
+
+                   </div>
+              </div>
+              <div class="section">
+                   <h1 class="h3 text-muted">{{name}}'s | Profile</h1>
+                   {%for user in users%}
+                         <p>{{user['first_name']}} {{user['last_name']}}</p>
+                         <p>{{user['email']}}</p>
+                         <p>{{user['password']}}</p>
+                   {%endfor%}
+                   
+                   <button type="button" id="rBtn" class="btn btn-sm btn-primary">Edit</button>
+
+                   <form class="rForm" action="index.html" method="post">
+                        <div class="form-group">
+                             <label for="first_name">First Name</label>
+                             <input type="text" class="form-control" name="first_name" value="">
+                        </div>
+                        <div class="form-group">
+                             <label for="last_name">Last Name</label>
+                             <input type="text" class="form-control" name="last_name" value="">
+                        </div>
+                        <div class="form-group">
+                             <label for="email">Email</label>
+                             <input type="email" class="form-control" name="email" value="">
+                        </div>
+                        <div class="form-group">
+                             <label for="password">Password</label>
+                             <input type="password" class="form-control" name="password" value="">
+                        </div>
+                   </form>
+              </div>
+              <div class="section">
+                   <h4 class="h3">Event History</h4>
+                   <h4 class="h3">Future</h4>
+              </div>
+          </div>
+     </body>
+</html>

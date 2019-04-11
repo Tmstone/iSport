@@ -8,7 +8,8 @@ nav.Bar('top', [
     nav.Item('Home', 'members'),
     nav.Item('New', 'new_event'),
     nav.Item('Search', 'search'),
-    #nav.Item('Account','account'),
+    nav.Item('Account','account'),
+    nav.Item('Logout','logout')
 ])
 
 
@@ -64,6 +65,7 @@ class User(db.Model):
 class Event(db.Model):
     __tablename__ = "Events"
     id = db.Column(db.Integer, primary_key = True)
+    #add foreign_key user_id
     type = db.Column(db.String(25), nullable = False)
     location = db.Column(db.String(25), nullable = False)
     info = db.Column(db.String(125), nullable = False)
@@ -126,6 +128,11 @@ def new_event():
 @app.route('/search')
 def search():
     return render_template('search.html')
+
+#render the account page. Add id variable
+@app.route('/user')
+def account():
+    return render_template('account.html')
 
 @app.route('/logout')
 def logout():
