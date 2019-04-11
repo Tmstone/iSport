@@ -23,7 +23,8 @@ class User(db.Model):
     birth_day = db.Column(db.String(25), nullable = False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
-    #add relationship
+
+    #events = db.relationship('Event', backref='my_events', cascade="all, delete-orphan")
 
     @classmethod
     def validate(cls, form):
@@ -63,7 +64,7 @@ class User(db.Model):
 
 #### Events Table #####
 class Event(db.Model):
-    __tablename__ = "Events"
+    __tablename__ = "events"
     id = db.Column(db.Integer, primary_key = True)
     #add foreign_key user_id
     type = db.Column(db.String(25), nullable = False)
@@ -74,6 +75,8 @@ class Event(db.Model):
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
     #add relationship
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
+    user = db.relationship('User', foreign_keys=[user_id], backref="my_events", cascade="all, delete-orphan")
 
     @classmethod
     def add_event(cls, form):
@@ -87,6 +90,7 @@ class Event(db.Model):
         db.sesson.add(event)
         db.session.commit()
         return event.id
+
 
 @app.route('/')
 def index():
@@ -114,8 +118,8 @@ def login():
 
 @app.route('/dashboard')
 def members():
-    #if 'user_id' not in session:
-        #return redirect('/')
+    if 'user_id' not in session:
+        return redirect('/')
 
     return render_template('dashboard.html')
 
@@ -128,6 +132,8 @@ def new_event():
 @app.route('/search')
 def search():
     return render_template('search.html')
+
+#add search query route and controller
 
 #render the account page. Add id variable
 @app.route('/user')
