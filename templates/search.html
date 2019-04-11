@@ -12,21 +12,16 @@
      <body>
          <div class="container">
               <div class="header">
-                  <div class="row">
-                       <div class="col-10">
-                           <h1 class="h4 text-muted">iSport</h1>
-                           <ul>
-                                {% for item in nav.top %}
-                                <li class="{{ 'active' if item.is_active else '' }}">
-                                    <a href="{{ item.url }}">{{ item.label }}</a>
-                              </li>
-                              {% endfor %}
-                         </ul>
-                       </div>
-                       <div class="col-2">
-                            <a href="/logout" class="btn btn-sm btn-warning">Logout</a>
-                       </div>
-                  </div>
+                 <nav class="navbar navbar-dark bg-dark">
+                       <h1 class="h4 text-muted navbar-brand">iSport</h1>
+                       <ul class="navbar-nav">
+                           {% for item in nav.top %}
+                               <li class="nav-item {{ 'active' if item.is_active else '' }} ">
+                                    <a class="nav-link" href="{{ item.url }}">{{ item.label }}</a>
+                               </li>
+                           {% endfor %}
+                       </ul>
+                  </nav>
              </div>
              <div class="section">
                   <h1 class="h3 text-muted">{{name}} | Search for Events</h1>
@@ -62,12 +57,12 @@
                             {% for fevent in fevents %}
                                  <tr>
                                       <!-- update these -->
-                                     <td>{{fevent['item']}}</td>
-                                     <td>{{fevent['wisher']}}</td>
-                                     <td>{{fevent['wish_created']}}</td>
-                                     <td>{{fevent['created_at']}}</td>
-                                     <td>{{fevent['created_at']}}</td>
-                                     <td>{{fevent['created_at']}}</td>
+                                     <td>{{fevent.type}}</td>
+                                     <td>{{fevent.location}}</td>
+                                     <td>{{fevent.attendess}}</td>
+                                     <td>{{fevent.date}}</td>
+                                     <td>{{fevent.time}}</td>
+                                     <td>{{fevent.time}}</td>
                                  </tr>
                              {% endfor %}
                        </tbody>

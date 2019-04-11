@@ -13,7 +13,7 @@
          <div class="container">
               <div class="header">
                   <div class="row">
-                       <div class="col-10">
+                       <div class="col-12">
                            <h1 class="h4 text-muted">iSport</h1>
                            <ul>
                                 {% for item in nav.top %}
@@ -23,14 +23,12 @@
                               {% endfor %}
                          </ul>
                        </div>
-                       <div class="col-2">
-                            <a href="/logout" class="btn btn-sm btn-warning">Logout</a>
-                       </div>
+
                   </div>
              </div>
              <div class="section">
                   <h1 class="h3 text-muted">{{name}} | Create a New Event</h1>
-                  <form class="" action="#" method="post">
+                  <form class="" action="/add_event" method="post">
                        <div class="form-group">
                             <label for="type">Event type</label>
                             <input type="text" class="form-control" name="type" value="">
@@ -42,6 +40,10 @@
                        <div class="form-group">
                             <label for="info">Information</label>
                             <textarea name="info" class="form-control" rows="4" cols="40"></textarea>
+                       </div>
+                       <div class="form-group">
+                            <label for="attendees">Attendees</label>
+                            <input type="text" class="form-control" name="attendees" value="">
                        </div>
                        <div class="form-group">
                             <label for="date">Event date</label>
