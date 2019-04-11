@@ -1,23 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, session
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-from flask_migrate import Migrate
-from flask_bcrypt import Bcrypt
-from flask_navigation import Navigation
-import datetime
-import re
-
-app = Flask(__name__)
-nav = Navigation(app)
-# configurations to tell our app about the database we'll be connecting to
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sports.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# an instance of the ORM
-db = SQLAlchemy(app)
-# a tool for allowing migrations/creation of tables
-migrate = Migrate(app, db)
-app.secret_key="secret#key#is#set"
-bcrypt = Bcrypt(app)
+from config import *
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PW_REGEX = re.compile('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$')
@@ -41,6 +22,7 @@ class User(db.Model):
     birth_day = db.Column(db.String(25), nullable = False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
+    #add relationship
 
     @classmethod
     def validate(cls, form):
@@ -77,6 +59,32 @@ class User(db.Model):
             if bcrypt.check_password_hash(user.pw_hash, form['password']):
                 return (True, user.id)
         return (False, 'email or password incorrect')
+
+#### Events Table #####
+class Event(db.Model):
+    __tablename__ = "Events"
+    id = db.Column(db.Integer, primary_key = True)
+    type = db.Column(db.String(25), nullable = False)
+    location = db.Column(db.String(25), nullable = False)
+    info = db.Column(db.String(125), nullable = False)
+    date = db.Column(db.String(20), nullable = False)
+    time = db.Column(db.String(10), nullable = False)
+    created_at = db.Column(db.DateTime, server_default=func.now())
+    updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
+    #add relationship
+
+    @classmethod
+    def add_event(cls, form):
+        event = Event(
+        type=form['type'],
+        location=form['info'],
+        info=form['info'],
+        date=form['date'],
+        time=form['time']
+        )
+        db.sesson.add(event)
+        db.session.commit()
+        return event.id
 
 @app.route('/')
 def index():
