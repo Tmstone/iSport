@@ -4,13 +4,13 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PW_REGEX = re.compile('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$')
 
 #Navaigation
-nav.Bar('top', [
-    nav.Item('Home', 'members'),
-    nav.Item('New Event', 'new_event'),
-    nav.Item('Search', 'search'),
-    nav.Item('Account','account'),
-    nav.Item('Logout','logout')
-])
+#nav.Bar('top', [
+#    nav.Item('Home', 'members'),
+#    nav.Item('New Event', 'new_event'),
+#    nav.Item('Search', 'search'),
+#    nav.Item('Account','account'),
+#    nav.Item('Logout','logout')
+#])
 
 
 class User(db.Model):
@@ -148,7 +148,7 @@ def members():
     return render_template('dashboard.html', name = user.first_name )
 
 ###Render New Event Page###
-@app.route('/new')
+@app.route('/new/event')
 def new_event():
     return render_template('new.html', name = session['first_name'])
 

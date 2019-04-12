@@ -12,20 +12,35 @@
      <body>
           <div class="container">
               <div class="header">
-                   <nav class="navbar navbar-dark bg-dark">
-                        <h1 class="h4 text-muted navbar-brand">iSport</h1>
-                        <ul class="navbar-nav">
-                             {% for item in nav.top %}
-                                   <li class="nav-item {{ 'active' if item.is_active else '' }} ">
-                                        <a class="nav-link" href="{{ item.url }}">{{ item.label }}</a>
-                                   </li>
-                              {% endfor %}
-                         </ul>
-                    </nav>
+                   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <a class="navbar-brand" href="/dashboard">iSport</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                   </button>
+                   <div class="collapse navbar-collapse" id="navbarNav">
+                             <ul class="navbar-nav">
+                                  <li class="nav-item active">
+                                       <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+                                  </li>
+                                  <li class="nav-item">
+                                       <a class="nav-link" href="/new/event">Add Event</a>
+                                  </li>
+                                  <li class="nav-item">
+                                       <a class="nav-link" href="/search">Search</a>
+                                  </li>
+                                  <li class="nav-item">
+                                       <a class="nav-link" href="/user">Account</a>
+                                  </li>
+                                  <li class="nav-item">
+                                       <a class="nav-link" href="/logout">Logout</a>
+                                  </li>
+                             </ul>
+                        </div>
+                   </nav>
               </div>
               <div class="section">
                    <h1 class="h3 text-muted">{{name}}'s | Profile</h1>
-
+                   <img src="" alt="profile picture for {{name}}">
                    <p>Name: {{name}} {{last}}</p>
                    <p>Email: {{email}}</p>
                    <button type="button" id="rBtn" class="btn btn-sm btn-primary">Edit</button>
