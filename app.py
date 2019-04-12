@@ -11,7 +11,13 @@ PW_REGEX = re.compile('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@
 #    nav.Item('Account','account'),
 #    nav.Item('Logout','logout')
 #])
-
+###Add Date time
+#today = date.today()
+##joined_events table
+joined_events = db.Table('joined',
+              db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+              db.Column('event_id', db.Integer, db.ForeignKey('events.id'), primary_key=True),
+              db.Column('created_at', db.DateTime, server_default=func.now()))
 
 class User(db.Model):
     __tablename__ = "users"
@@ -23,8 +29,8 @@ class User(db.Model):
     birth_day = db.Column(db.String(25), nullable = False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
-
-    #events = db.relationship('Event', backref='my_events', cascade="all, delete-orphan")
+    #add joined_events relationship
+    events_this_user_joins = db.relationship('Events', secondary=joined_events)
 
     @classmethod
     def validate(cls, form):
@@ -92,6 +98,8 @@ class Event(db.Model):
     #add relationship
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
     user = db.relationship('User', foreign_keys=[user_id], backref="my_events", cascade="all")
+    #add joined_events relationship
+    users_who_joined_this_event = db.relationship('User', secondary=joined_events)
 
     @classmethod
     def add_event(cls, form):
@@ -145,7 +153,7 @@ def members():
         return redirect('/')
     user = User.get_user(session['user_id'])
     session['first_name'] = user.first_name
-    return render_template('dashboard.html', name = user.first_name )
+    return render_template('dashboard.html', name = user.first_name, today = today )
 
 ###Render New Event Page###
 @app.route('/new/event')
@@ -161,15 +169,19 @@ def add_event():
 #search for Events
 @app.route('/search')
 def search():
+    return render_template('search.html',
+    name = session['first_name'],
+    )
+
+#add search query route and controller
+@app.route('/search/event', methods=['POST'])
+def search_event():
     events = Event.get_event()
 
     return render_template('search.html',
     name = session['first_name'],
     fevents = events
     )
-
-#add search query route and controller
-
 
 #render the account page. Add id variable###
 @app.route('/user')
@@ -180,6 +192,7 @@ def account():
     last= account.last_name,
     email=account.email,
     )
+
 ###upadate user profile###
 @app.route('/user/update', methods=['POST'])
 def update_user():
