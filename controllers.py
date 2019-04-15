@@ -72,7 +72,7 @@ def update_user(id):
     if errors:
         for error in errors:
             flash(error)
-        return redirect(f'/user/{id}')
+        return redirect(url_for('account',id = id))
     profile = User.edit_user(request.form)
     return redirect('/dashboard')
 
@@ -118,7 +118,7 @@ def update_event(id):
     if errors:
         for error in errors:
             flash(error)
-        return redirect(f'/event/{id}')#fix this
+        return redirect(url_for('show_event', id = id))
     update = Event.edit_event(request.form, id )
     return redirect('/search')
 

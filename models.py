@@ -36,7 +36,7 @@ class User(db.Model):
     events_this_user_joins = db.relationship('Event', secondary=joined_events)
 
     def __repr__(self):
-        return '<User %r>' % self.first_name
+        return '<User {}>'.format(self.first_name)
 
     @classmethod
     def validate(cls, form):
@@ -124,7 +124,7 @@ class Event(db.Model):
     users_who_joined_this_event = db.relationship('User', secondary=joined_events)
 
     def __repr__(self):
-        return '<Event %r>' % self.type
+        return '<Event {}>'.format(self.type)
 
 ### validate event
     @classmethod
