@@ -16,7 +16,7 @@
                </div>
                <div class="section">
                     <h1 class="">Welcome <span id="first-name"></span></h1>
-                    <h4 class="h6 text-muted">Today is {{today}} and you have __ event(s) today:</h4>
+                    <h4 class="h6 text-muted">Today is {{today}} and you have 0 event(s) today:</h4>
                     <table class="table">
                          <thead>
                               <tr>
@@ -28,12 +28,14 @@
                          </thead>
                          <tbody>
                               {% for event in events %}
+                                   {% if today == event.date %}
                                    <tr>
-                                       <td>{{event['type']}}</td>
+                                       <td>{{event.type}}</td>
                                        <td>{{event.location}}</td>
                                        <td>{{event.attendess}}</td>
-                                       <td>{{event.date}} {{event.time}}</td>
+                                       <td> {{event.time}}</td>
                                    </tr>
+                                   {% endif %}
                                {% endfor %}
                          </tbody>
                     </table>
@@ -50,13 +52,15 @@
                               </tr>
                          </thead>
                          <tbody>
-                              {% for fevent in fevents %}
+                              {% for event in events %}
+                                   {% if today > event.date %}
                                    <tr>
-                                       <td>{{fevent['item']}}</td>
-                                       <td>{{fevent['wisher']}}</td>
-                                       <td>{{fevent['wish_created']}}</td>
-                                       <td>{{fevent['created_at']}}</td>
+                                        <td><a href="/event/{{event.id}}">{{event.type}}</a></td>
+                                        <td>{{event.location}}</td>
+                                        <td>{{event.attendess}}</td>
+                                        <td>{{event.date}} {{event.time}}</td>
                                    </tr>
+                                   {% endif %}
                                {% endfor %}
                          </tbody>
                     </table>

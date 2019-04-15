@@ -6,13 +6,13 @@ from controllers import *
 #master routes
 app.add_url_rule('/', view_func=index)
 app.add_url_rule('/logout', view_func=logout)
+app.add_url_rule('/nav', view_func=nav)
 
 #User routes
 app.add_url_rule('/user/first_name', view_func=first)
 app.add_url_rule('/user/new', view_func=new_user, methods=['POST'])
 app.add_url_rule('/login', view_func=login, methods=['POST'])
 app.add_url_rule('/dashboard', view_func=members)
-app.add_url_rule('/nav', view_func=nav)
 app.add_url_rule('/user/<id>', view_func=account)
 app.add_url_rule('/user/<id>/update', view_func=update_user, methods=['POST'])
 

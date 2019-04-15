@@ -38,15 +38,15 @@ def first():
 def nav():
     user = User.query.get(session['user_id'])
     return render_template('nav.html', user = user)
+
 ##render dashboard
 def members():
     if 'user_id' not in session:
         return redirect('/')
     today = datetime.now().strftime('%A, %B %d, %Y')
-    print('*'*90)
-    print(today)
+
     user = User.get_user(session['user_id'])
-    myevents = Event.my_event(user.id)
+    myevents = User.user_event(user.id)
 
     print(myevents)
 

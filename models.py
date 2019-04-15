@@ -49,7 +49,6 @@ class User(db.Model):
             errors.append('Please enter a valid email address')
         if not PW_REGEX.match(request.form['password']):
             flash('* Please enter a valid password: 6-20 characters, A-Z and (# $ % @ &)')
-
         return errors
 
     @classmethod
@@ -97,6 +96,14 @@ class User(db.Model):
         event = Event.query.get(id)
         current_user.events_this_user_joins.append(event)
         db.session.commit()
+        return current_user
+
+## get events user joined
+    @classmethod
+    def user_event(cls, id):
+        my_events = User.query.get(id)
+        print(my_events.events_this_user_joins)
+        return my_events.events_this_user_joins
 
 #### Events Table #####
 class Event(db.Model):
@@ -115,6 +122,9 @@ class Event(db.Model):
     user = db.relationship('User', foreign_keys=[user_id], backref="my_events", cascade="all")
     #add joined_events relationship
     users_who_joined_this_event = db.relationship('User', secondary=joined_events)
+
+    def __repr__(self):
+        return '<Event %r>' % self.type
 
 ### validate event
     @classmethod
@@ -176,7 +186,7 @@ class Event(db.Model):
         all_events = Event.query.all()
         return all_events
 
-#method for events the user organized
+#method for users who joined this event
     @classmethod
     def my_event(cls, id):
         my_events = Event.query.get(id)
