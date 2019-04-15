@@ -40,6 +40,13 @@
              </div>
              <div class="section">
                   <h1 class="h3 text-muted">{{name}} | Create a New Event</h1>
+                  {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                           {% for message in messages %}
+                                <p style="color: red">{{message}}</p>
+                           {% endfor %}
+                       {% endif %}
+                 {% endwith %}
                   <form class="" action="/add_event" method="post">
                        <div class="form-group">
                             <label for="type">Event type</label>

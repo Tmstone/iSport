@@ -29,7 +29,7 @@
                                         <a class="nav-link" href="/search">Search</a>
                                    </li>
                                    <li class="nav-item">
-                                        <a class="nav-link" href="/user">Account</a>
+                                        <a class="nav-link" href="/user/{{user.id}}">Account</a>
                                    </li>
                                    <li class="nav-item">
                                         <a class="nav-link" href="/logout">Logout</a>
@@ -39,7 +39,7 @@
                     </nav>
                </div>
                <div class="section">
-                    <h1 class="">Welcome {{name}}</h1>
+                    <h1 class="">Welcome {{user.first_name}}</h1>
                     <h4 class="h6 text-muted">Today is __ and you have __ event(s) today:</h4>
                     <table class="table">
                          <thead>
@@ -53,10 +53,10 @@
                          <tbody>
                               {% for event in events %}
                                    <tr>
-                                       <td>{{event['item']}}</td>
-                                       <td>{{event['created_at']}}</td>
-                                       <td>{{event['attendees']}}</td>
-                                       <td>{{event['time']}}</td>
+                                       <td>{{event.type}}</td>
+                                       <td>{{event.location}}</td>
+                                       <td>{{event.attendess}}</td>
+                                       <td>{{event.date}} {{event.time}}</td>
                                    </tr>
                                {% endfor %}
                          </tbody>

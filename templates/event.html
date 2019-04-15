@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+     <head>
+          <meta charset="utf-8">
+          <meta name="iSpring" content="Free Pickup Game Finder and Organizer customized for you.">
+          <title>iSport | Event Details</title>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+          <script src="{{ url_for('static', filename='script.js') }}"></script>
+     </head>
+     <body>
+          <div class="container">
+               <div class="header">
+
+               </div>
+               <div class="section">
+                  <h1 class="h4">{{event.type}} Event</h1>
+                  <p>Date: {{event.date}}</p>
+                  <p>Time: {{event.time}}</p>
+                  <p>Location: {{event.location}}</p>
+                  <p>Organizer: {{event.user.first_name}} {{event.user.last_name}} </p>
+                  <p>Contact: {{event.user.email}}</p>
+                  <p>Event Details: {{event.info}}</p>
+                  {% if event.user.id == session['user_id']%}
+                         <button type="button" id="rBtn" class="btn btn-sm btn-primary">Edit Event</button>
+                         <a href="/event/{{event.id}}/delete" class="btn btn-sm btn-danger" >Cancel Event</a>
+                  {% endif %}
+
+                  {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                           {% for message in messages %}
+                                <p style="color: red">{{message}}</p>
+                           {% endfor %}
+                       {% endif %}
+                 {% endwith %}
+
+                  <form class="rForm" action="/event/{{event.id}}/update" method="post">
+                       <div class="form-group">
+                            <label for="type">Event type</label>
+                            <input type="text" class="form-control" name="type" value="{{event.type}}">
+                       </div>
+                       <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="location" class="form-control" name="location" value="{{event.location}}">
+                       </div>
+                       <div class="form-group">
+                            <label for="info">Information</label>
+                            <textarea name="info" class="form-control" rows="4"  cols="40">{{event.info}}</textarea>
+                       </div>
+                       <div class="form-group">
+                            <label for="attendees">Attendees</label>
+                            <input type="text" class="form-control" name="attendees" value="{{event.attendess}}">
+                       </div>
+                       <div class="form-group">
+                            <label for="date">Event date</label>
+                            <input type="date" class="form-control" name="edate" value="{{event.date}}">
+                       </div>
+                       <div class="form-group">
+                            <label for="time">Event time</label>
+                            <input type="text" class="form-control" name="etime" value="{{event.time}}">
+                       </div>
+                       <input type="submit" class="btn btn-primary" value="Update Event">
+                  </form>
+               </div>
+          </div>
+     </body>
+</html>

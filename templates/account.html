@@ -39,24 +39,29 @@
                    </nav>
               </div>
               <div class="section">
-                   <h1 class="h3 text-muted">{{name}}'s | Profile</h1>
-                   <img src="" alt="profile picture for {{name}}">
-                   <p>Name: {{name}} {{last}}</p>
-                   <p>Email: {{email}}</p>
-                   <button type="button" id="rBtn" class="btn btn-sm btn-primary">Edit</button>
+                   <h1 class="h3 text-muted">{{account.first_name}}'s | Profile</h1>
+                   <img src="" alt="profile picture for {{account.first_name}} {{account.last_name}}">
+                   <p class="h5">Name: <span class="text-muted">{{account.first_name}} {{account.last_name}}</span></p>
+                   <p class="h5">Email: <span>{{account.email}}</span></p>
 
-                   <form class="rForm" action="/user/update" method="post">
+                   {% if account.id == session['user_id'] %}
+                       <p class="h5">Birthday: <span>{{account.birth_day}}</span></p>
+                       <button type="button" id="rBtn" class="btn btn-sm btn-primary">Edit</button>
+                   {% endif %}
+
+
+                   <form class="rForm" action="/user/{{session['user_id']}}/update" method="post">
                         <div class="form-group">
                              <label for="first_name">First Name</label>
-                             <input type="text" class="form-control" name="first_name" value="{{name}}">
+                             <input type="text" class="form-control" name="first_name" value="{{account.first_name}}">
                         </div>
                         <div class="form-group">
                              <label for="last_name">Last Name</label>
-                             <input type="text" class="form-control" name="last_name" value="{{last}}">
+                             <input type="text" class="form-control" name="last_name" value="{{account.last_name}}">
                         </div>
                         <div class="form-group">
                              <label for="email">Email</label>
-                             <input type="email" class="form-control" name="email" value="{{email}}">
+                             <input type="email" class="form-control" name="email" value="{{account.email}}">
                         </div>
                         <div class="form-group">
                              <label for="password">Password</label>
@@ -66,8 +71,13 @@
                    </form>
               </div>
               <div class="section">
-                   <h4 class="h3">Event History</h4>
-                   <h4 class="h3">Future</h4>
+                   <h4 class="h5">Event History</h4>
+
+                   <h4 class="h5">Future</h4>
+                       {% for event in events %}
+                         <p>{{event}}</p>
+                       {% endfor %}
+
               </div>
           </div>
      </body>

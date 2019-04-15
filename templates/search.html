@@ -72,12 +72,17 @@
                             {% for fevent in fevents %}
                                  <tr>
                                       <!-- update these -->
-                                     <td>{{fevent.type}}</td>
+                                     <td><a href="/event/{{fevent.id}}">{{fevent.type}}</a></td>
                                      <td>{{fevent.location}}</td>
                                      <td>{{fevent.attendess}}</td>
                                      <td>{{fevent.date}}</td>
-                                     <td>{{fevent.time}}</td>
-                                     <td>{{fevent.time}}</td>
+                                     <td><a href="/user/{{fevent.user.id}}">{{fevent.user.first_name}} {{fevent.user.last_name}}</a></td>
+
+                                     <td>
+                                          <form action="#" method="post">
+                                               <input class ="btn btn-sm btn-primary" type="submit" value="Join">
+                                          </form>
+                                     </td>
                                  </tr>
                              {% endfor %}
                        </tbody>
