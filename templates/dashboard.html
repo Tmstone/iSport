@@ -40,7 +40,7 @@
                </div>
                <div class="section">
                     <h1 class="">Welcome {{user.first_name}}</h1>
-                    <h4 class="h6 text-muted">Today is __ and you have __ event(s) today:</h4>
+                    <h4 class="h6 text-muted">Today is {{today}} and you have __ event(s) today:</h4>
                     <table class="table">
                          <thead>
                               <tr>
@@ -53,7 +53,7 @@
                          <tbody>
                               {% for event in events %}
                                    <tr>
-                                       <td>{{event.type}}</td>
+                                       <td>{{event['type']}}</td>
                                        <td>{{event.location}}</td>
                                        <td>{{event.attendess}}</td>
                                        <td>{{event.date}} {{event.time}}</td>
