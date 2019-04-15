@@ -29,7 +29,15 @@ def login():
     session['user_id'] = response
     print(response)
     return redirect('/dashboard')
+##adding first name
+def first():
+    user = User.query.get(session['user_id'])
+    return user.first_name
 
+#rendering navigation on the dashboard
+def nav():
+    user = User.query.get(session['user_id'])
+    return render_template('nav.html', user = user)
 ##render dashboard
 def members():
     if 'user_id' not in session:

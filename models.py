@@ -180,6 +180,7 @@ class Event(db.Model):
     @classmethod
     def my_event(cls, id):
         my_events = Event.query.get(id)
+        print(my_events)
         return my_events.users_who_joined_this_event
 
 #get event for single events page

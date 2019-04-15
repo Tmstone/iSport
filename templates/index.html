@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
      <head>
+          <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
           <meta charset="utf-8">
           <meta name="iSpring" content="Free Pickup Game Finder and Organizer.">
           <title>iSpring</title>
@@ -8,6 +9,7 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
           <script src="{{ url_for('static', filename='script.js') }}"></script>
+          <script src="{{ url_for('static', filename='map.js') }}"></script>
      </head>
      <body>
           <div class="container">
@@ -74,6 +76,7 @@
                          </form>
                     </div>
                </div>
+               <div ="map"></div>
                <div class="section">
                     <h1 class="h5">Events near you.</h1>
                     <div class="row">
@@ -89,5 +92,8 @@
                     </div>
                </div>
           </div>
+     </script>
+     <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-g6FOkxgRm23axguDvZIvfF3V3lIiSOY&callback=initMap"></script>
      </body>
 </html>

@@ -4,3 +4,6 @@
 .lForm {
      display:none;
 }
+#map {
+     height: 100%;
+}
