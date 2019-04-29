@@ -89,6 +89,7 @@ def search():
 def search_event():
     events = Event.get_event(request.form)
     return redirect('/search')
+
 ### Render New Event Page ###
 def new_event():
     return render_template('new.html', name = session['first_name'])
@@ -97,6 +98,7 @@ def new_event():
 def like_event(id):
     like_event = User.join_event(id)
     return redirect('/search')
+
 ### Add new event ###
 def add_event():
     errors = Event.validate(request.form)
