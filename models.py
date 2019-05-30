@@ -4,17 +4,6 @@ from config import *
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PW_REGEX = re.compile('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$')
 
-#Navaigation
-#nav.Bar('top', [
-#    nav.Item('Home', 'members'),
-#    nav.Item('New Event', 'new_event'),
-#    nav.Item('Search', 'search'),
-#    nav.Item('Account','account'),
-#    nav.Item('Logout','logout')
-#])
-###Add Date time
-#today = date.today()
-##joined_events table
 
 joined_events = db.Table('joined',
               db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
