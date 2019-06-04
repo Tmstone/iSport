@@ -29,6 +29,7 @@ def login():
     session['user_id'] = response
     print(response)
     return redirect('/dashboard')
+
 ##adding first name
 def first():
     user = User.query.get(session['user_id'])
