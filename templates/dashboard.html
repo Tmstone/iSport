@@ -15,7 +15,11 @@
                     <div id="nav"></div>
                </div>
                <div class="section">
-                    <h1 class="">Welcome <span id="first-name"></span></h1>
+                    <h1 class="">Welcome <span id="first-name"></span> | 
+                         <a href="/user/{{user.id}}">
+                              <ion-icon size="large" name="contact"></ion-icon>
+                         </a> 
+                    </h1>
                     <h4 class="h6 text-muted">Today is {{today}} and you have 0 event(s) today:</h4>
                     <table class="table">
                          <thead>
@@ -67,6 +71,7 @@
                </div>
                <div id="footer"></div>
           </div>
+          <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
           <!-- add bootstrap code for responsive design -->
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
      </body>
