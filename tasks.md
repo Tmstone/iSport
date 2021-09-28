@@ -1,10 +1,8 @@
-TODO
 [x] Recreate the environment
 
 - [x] update requirements
-
-[] Initialize the database
-[] Add search feature
+      [] Initialize the database
+- [] Add search feature
 
 - [] Add filter
 
