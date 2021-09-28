@@ -1,9 +1,10 @@
 [x] Recreate the environment
 
-- [x] update requirements
-      [] Initialize the database
-- [] Add search feature
+[x] update requirements
 
-- [] Add filter
+[] Initialize the database
+[] Add search feature
+
+[] Add filter
 
 [] Implement "Events you have today" feature
