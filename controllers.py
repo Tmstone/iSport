@@ -6,6 +6,7 @@ from models import User, Event
 ## Render index page
 def index():
     #add location map with events
+    #Map intetgration not working
     return render_template('index.html')
 
 ##User controllers
@@ -40,7 +41,8 @@ def nav():
     user = User.query.get(session['user_id'])
     return render_template('nav.html', user = user)
 
-##render dashboard
+#render dashboard
+##current date display not working. 
 def members():
     if 'user_id' not in session:
         return redirect('/')
@@ -67,7 +69,7 @@ def account(id):
     #events = my_events
     )
 
-### upadate user profile ###
+### update user profile ###
 def update_user(id):
     errors = User.validate(request.form)
     if errors:
