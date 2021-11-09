@@ -62,12 +62,13 @@ def members():
 ### Render the account page ###
 def account(id):
     account = User.get_user(id)
-    my_events = Event.my_event(id)
+    #use a different quer
+    #my_events = Event.my_event(id)
+    my_events = User.user_event(id)
     print(my_events)
     return render_template('account.html',
-    account = account
-    #events = my_events
-    )
+    account = account,
+    events = my_events)
 
 ### update user profile ###
 def update_user(id):

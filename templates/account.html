@@ -1,66 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-     <head>
-          <meta charset="utf-8">
-          <meta name="iSpring" content="Free Pickup Game Finder and Organizer customized for you.">
-          <title>iSport | Edit Account</title>
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-          <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-          <script src="{{ url_for('static', filename='script.js') }}"></script>
-     </head>
-     <body>
-          <div class="container">
-              <div class="header">
-                   <div id="nav"></div>
-              </div>
-              <div class="section">
-                   <h1 class="h3 text-muted">{{account.first_name}}'s | Profile</h1>
-                   <a href="" alt="profile picture for {{account.first_name}} {{account.last_name}}"><ion-icon size="large" name="contact"></ion-icon></a>
-                   <!--img src="" alt="profile picture for {{account.first_name}} {{account.last_name}}"-->
-                   <p class="h5">Name: <span class="text-muted">{{account.first_name}} {{account.last_name}}</span></p>
-                   <p class="h5">Email: <span>{{account.email}}</span></p>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="iSpring"
+      content="Free Pickup Game Finder and Organizer customized for you."
+    />
+    <title>iSport | Edit Account</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div id="nav"></div>
+      </div>
+      <div class="section">
+        <h1 class="h3 text-muted">{{account.first_name}}'s | Profile</h1>
+        <a
+          href=""
+          alt="profile picture for {{account.first_name}} {{account.last_name}}"
+          ><ion-icon size="large" name="contact"></ion-icon
+        ></a>
+        <!--img src="" alt="profile picture for {{account.first_name}} {{account.last_name}}"-->
+        <p class="h5">
+          Name:
+          <span class="text-muted"
+            >{{account.first_name}} {{account.last_name}}</span
+          >
+        </p>
+        <p class="h5">Email: <span>{{account.email}}</span></p>
 
-                   {% if account.id == session['user_id'] %}
-                       <p class="h5">Birthday: <span>{{account.birth_day}}</span></p>
-                       <button type="button" id="rBtn" class="btn btn-sm btn-primary">Edit</button>
-                   {% endif %}
+        {% if account.id == session['user_id'] %}
+        <p class="h5">Birthday: <span>{{account.birth_day}}</span></p>
+        <button type="button" id="rBtn" class="btn btn-sm btn-primary">
+          Edit
+        </button>
+        {% endif %}
 
-
-                   <form class="rForm" action="/user/{{session['user_id']}}/update" method="post">
-                        <div class="form-group">
-                             <label for="first_name">First Name</label>
-                             <input type="text" class="form-control" name="first_name" value="{{account.first_name}}">
-                        </div>
-                        <div class="form-group">
-                             <label for="last_name">Last Name</label>
-                             <input type="text" class="form-control" name="last_name" value="{{account.last_name}}">
-                        </div>
-                        <div class="form-group">
-                             <label for="email">Email</label>
-                             <input type="email" class="form-control" name="email" value="{{account.email}}">
-                        </div>
-                        <div class="form-group">
-                             <label for="password">Password</label>
-                             <input type="password" class="form-control" name="password" value="">
-                        </div>
-                        <input type="submit" class="btn btn-success" value="Update Profile">
-                   </form>
-              </div>
-              <div class="section">
-                   <h4 class="h5">Event History</h4>
-                   <p>Your past events appear below.</p>
-
-                   <h4 class="h5">Future</h4>
-                   <p>Your upcomming events appear below.</p>
-                       {% for event in events %}
-                         <p>{{event}}</p>
-                       {% endfor %}
-
-              </div>
+        <form
+          class="rForm"
+          action="/user/{{session['user_id']}}/update"
+          method="post"
+        >
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="first_name"
+              value="{{account.first_name}}"
+            />
           </div>
-          <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
-          <!-- add bootstrap code for responsive design -->
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-     </body>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="last_name"
+              value="{{account.last_name}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              value="{{account.email}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              value="{{account.password}}"
+            />
+          </div>
+          <input type="submit" class="btn btn-success" value="Update Profile" />
+        </form>
+      </div>
+      <div class="section">
+        <h4 class="h5">Event History</h4>
+        <p>Your past events appear below.</p>
+
+        <h4 class="h5">Future</h4>
+        <p>Your upcoming events appear below.</p>
+        {% for event in events %}
+        <p>
+          {{event.date}} | {{event.type}} | {{event.location}} | {{event.time}}
+        </p>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+    <!-- add bootstrap code for responsive design -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
