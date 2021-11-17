@@ -111,6 +111,7 @@ def add_event():
             flash(error)
         return redirect('/new/event')
     event = Event.add_event(request.form)
+    #like_event = User.join_event(id)
     return redirect('/search')
 
 ### Render the events page ###

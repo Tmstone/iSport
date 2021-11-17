@@ -2,7 +2,7 @@
 
 [x] update requirements
 
-[] Initialize the database
+[x] Initialize the database
 [] Add search feature
 
 [] Add filter
