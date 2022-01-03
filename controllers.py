@@ -7,7 +7,7 @@ from models import User, Event
 def index():
     #add location map with events
     #Map intetgration not working
-    return render_template('index.html')
+    return render_template('index.html') 
 
 ##User controllers
 ## Add new user
@@ -30,6 +30,10 @@ def login():
     session['user_id'] = response
     print(response)
     return redirect('/dashboard')
+
+#reset user password
+def reset_pw():
+   return render_template('reset.html')
 
 ##adding first name
 def first():
@@ -54,10 +58,7 @@ def members():
     print(myevents)
 
     session['first_name'] = user.first_name
-    return render_template('dashboard.html',
-    user=user, today=today,
-    events = myevents
-    )
+    return render_template('dashboard.html', user=user, today=today, events = myevents)
 
 ### Render the account page ###
 def account(id):

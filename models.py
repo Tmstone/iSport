@@ -75,6 +75,8 @@ class User(db.Model):
         user_update.first_name = form['first_name']
         user_update.last_name = form['last_name']
         user_update.email = form['email']
+    #add update password
+    #   user_update.password = bcrypt.generate_password(form['password'])
         user_update.birth_day = form['bday']
         db.session.commit()
         return user_update.id

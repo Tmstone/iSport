@@ -15,6 +15,8 @@ app.add_url_rule('/login', view_func=login, methods=['POST'])
 app.add_url_rule('/dashboard', view_func=members)
 app.add_url_rule('/user/<id>', view_func=account)
 app.add_url_rule('/user/<id>/update', view_func=update_user, methods=['POST'])
+#forgot password
+app.add_url_rule('/pwreset', view_func=reset_pw)
 
 #Event routes
 app.add_url_rule('/search', view_func=search)
