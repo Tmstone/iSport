@@ -31,9 +31,14 @@ def login():
     print(response)
     return redirect('/dashboard')
 
-#reset user password
-def reset_pw():
+####reset user password
+#get user credentials page
+def check_user():
    return render_template('reset.html')
+
+#check user credentials
+def get_reset():
+    return render_template('password.html')
 
 ##adding first name
 def first():

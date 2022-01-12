@@ -16,7 +16,11 @@ app.add_url_rule('/dashboard', view_func=members)
 app.add_url_rule('/user/<id>', view_func=account)
 app.add_url_rule('/user/<id>/update', view_func=update_user, methods=['POST'])
 #forgot password
-app.add_url_rule('/pwreset', view_func=reset_pw)
+app.add_url_rule('/checkuser', view_func=check_user)
+app.add_url_rule('/getreset', view_func=get_reset)
+# app.add_url_rule('/reset', view_function=reset, 
+# methods=[POST])
+
 
 #Event routes
 app.add_url_rule('/search', view_func=search)
