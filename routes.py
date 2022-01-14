@@ -18,9 +18,8 @@ app.add_url_rule('/user/<id>/update', view_func=update_user, methods=['POST'])
 #Forgot password
 app.add_url_rule('/check/user', view_func=check_user)
 app.add_url_rule('/get/reset', view_func=get_reset, methods=['POST'])
-app.add_url_rule('/get/user/reset', view_func=password_reset)
-# app.add_url_rule('/reset/<id>', view_function=reset, 
-# methods=[POST])
+app.add_url_rule('/get/user/reset', view_func=get_password_page)
+# app.add_url_rule('/reset/user', view_function=reset, methods=[POST])
 
 #Event routes
 app.add_url_rule('/search', view_func=search)

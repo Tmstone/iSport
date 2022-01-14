@@ -60,9 +60,12 @@ class User(db.Model):
         if user:
             if bcrypt.check_password_hash(user.pw_hash, form['password']):
                 return (True, user.id)
-        return (False, 'email or password incorrect')
+        return (False, 'We don\'t recognize that username/password combination.')
 
-#password_assist
+#password_assist 
+#query breaks if the email is not found.
+#TODO: create an issue for -1 queries
+#TODO: change to verify user
     @classmethod
     def password_assist(cls, form):
         validate_user = User.query.filter_by(email=form['email']).first()
@@ -71,7 +74,15 @@ class User(db.Model):
         if validate_user.email == form['email'] and validate_user.birth_day == form['bday']:
             print('Credentials Match')
             return(True, validate_user.id)
-        return (False, 'Username does not match our records.')
+        return (False, 'We don\'t recognize that username/birthday combination.')
+
+#reset password
+    #@classmethod
+    #def reset_user_password(cls, form):
+    #    reset_user_password = User.query.get(session['user_id])
+    #    reset_user_password.password = bcrypt.generate_password_hash(form['password']) 
+    #    db.session.commit()
+    #    return reset_user_password.id
 
     @classmethod
     def get_user(cls, id):

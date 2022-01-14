@@ -42,15 +42,18 @@ def get_reset():
     if not valid:
         flash(response)
         return redirect('/check/user')
+#TODO: Investigate using a token to validate user instead of session 
     session['user_id'] = response
     #return redirect('/dashboard')
     return redirect('/get/user/reset')
     #return redirect(url_for('password_reset', id = session['user_id'])) 
 
-#reset password
-def password_reset():
+#get password page
+def get_password_page():
     return render_template('password.html')
 
+#reset password
+#def reset(id):
 
 
 ##adding first name
