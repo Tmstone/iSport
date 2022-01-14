@@ -62,6 +62,17 @@ class User(db.Model):
                 return (True, user.id)
         return (False, 'email or password incorrect')
 
+#password_assist
+    @classmethod
+    def password_assist(cls, form):
+        validate_user = User.query.filter_by(email=form['email']).first()
+        #print(validate_user.email)
+        #if validate_user.email(form['email']) and validate_user.birth_day(form['bday']):
+        if validate_user.email == form['email'] and validate_user.birth_day == form['bday']:
+            print('Credentials Match')
+            return(True, validate_user.id)
+        return (False, 'Username does not natch our records.')
+
     @classmethod
     def get_user(cls, id):
         user = User.query.get(id)

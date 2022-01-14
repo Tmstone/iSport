@@ -38,7 +38,19 @@ def check_user():
 
 #check user credentials
 def get_reset():
+    valid, response = User.password_assist(request.form)
+    if not valid:
+        flash(response)
+        return redirect('/check/user')
+    session['user_id'] = response
+    #return redirect('/dashboard')
+    return redirect(url_for('reset', id = session['user_id'])) 
+    
+#reset password
+def reset(id):
     return render_template('password.html')
+
+
 
 ##adding first name
 def first():
@@ -68,7 +80,7 @@ def members():
 ### Render the account page ###
 def account(id):
     account = User.get_user(id)
-    #use a different quer
+    #use a different query
     #my_events = Event.my_event(id)
     my_events = User.user_event(id)
     print(my_events)

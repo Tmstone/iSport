@@ -2,8 +2,7 @@ from config import app
 from controllers import *
 #index, new_user, login, members, new_event, add_event, search, search_event, account, update_user, logout
 
-
-#master routes
+#Master routes
 app.add_url_rule('/', view_func=index)
 app.add_url_rule('/logout', view_func=logout)
 app.add_url_rule('/nav', view_func=nav)
@@ -15,12 +14,13 @@ app.add_url_rule('/login', view_func=login, methods=['POST'])
 app.add_url_rule('/dashboard', view_func=members)
 app.add_url_rule('/user/<id>', view_func=account)
 app.add_url_rule('/user/<id>/update', view_func=update_user, methods=['POST'])
-#forgot password
-app.add_url_rule('/checkuser', view_func=check_user)
-app.add_url_rule('/getreset', view_func=get_reset)
-# app.add_url_rule('/reset', view_function=reset, 
-# methods=[POST])
 
+#Forgot password
+app.add_url_rule('/check/user', view_func=check_user)
+app.add_url_rule('/get/reset', view_func=get_reset, methods=['POST'])
+app.add_url_rule('/get/<id>/reset', view_func=reset)
+# app.add_url_rule('/reset/<id>', view_function=reset, 
+# methods=[POST])
 
 #Event routes
 app.add_url_rule('/search', view_func=search)
