@@ -71,7 +71,7 @@ class User(db.Model):
         if validate_user.email == form['email'] and validate_user.birth_day == form['bday']:
             print('Credentials Match')
             return(True, validate_user.id)
-        return (False, 'Username does not natch our records.')
+        return (False, 'Username does not match our records.')
 
     @classmethod
     def get_user(cls, id):

@@ -30,6 +30,10 @@
         Enter the email address and date of birth you used to create your iSport
         account.
       </p>
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <p style="color: red">{{message}}</p>
+      {% endfor %} {% endif %} {% endwith %}
       <hr />
       <form action="/get/reset" method="post">
         <div class="form-group">

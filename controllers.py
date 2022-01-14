@@ -44,10 +44,11 @@ def get_reset():
         return redirect('/check/user')
     session['user_id'] = response
     #return redirect('/dashboard')
-    return redirect(url_for('reset', id = session['user_id'])) 
-    
+    return redirect('/get/user/reset')
+    #return redirect(url_for('password_reset', id = session['user_id'])) 
+
 #reset password
-def reset(id):
+def password_reset():
     return render_template('password.html')
 
 
