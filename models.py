@@ -62,27 +62,31 @@ class User(db.Model):
                 return (True, user.id)
         return (False, 'We don\'t recognize that username/password combination.')
 
-#password_assist 
+#verify_user 
 #query breaks if the email is not found.
-#TODO: create an issue for -1 queries
-#TODO: change to verify user
+#TODO: create an issue for -1 queries (if the username is not found then it should invite them to join.)
     @classmethod
-    def password_assist(cls, form):
+    def verify_user(cls, form):
         validate_user = User.query.filter_by(email=form['email']).first()
-        #print(validate_user.email)
-        #if validate_user.email(form['email']) and validate_user.birth_day(form['bday']):
         if validate_user.email == form['email'] and validate_user.birth_day == form['bday']:
             print('Credentials Match')
             return(True, validate_user.id)
         return (False, 'We don\'t recognize that username/birthday combination.')
 
 #reset password
-    #@classmethod
-    #def reset_user_password(cls, form):
-    #    reset_user_password = User.query.get(session['user_id])
-    #    reset_user_password.password = bcrypt.generate_password_hash(form['password']) 
-    #    db.session.commit()
-    #    return reset_user_password.id
+
+    @classmethod
+    def reset_user_password(cls, form):
+        reset_user_password = User.query.get(session['user_id'])
+        print(reset_user_password.email)
+        new_password = form['password']
+        confirm_password = form['confirm']
+        print(new_password, confirm_password)
+        if new_password is not confirm_password:
+            return (False, 'Passwords do not match')
+        reset_user_password.pw_hash = bcrypt.generate_password_hash(new_password) 
+        db.session.commit()
+        return reset_user_password.id
 
     @classmethod
     def get_user(cls, id):
@@ -97,7 +101,6 @@ class User(db.Model):
         user_update.first_name = form['first_name']
         user_update.last_name = form['last_name']
         user_update.email = form['email']
-    #add update password
         user_update.password = bcrypt.generate_password_hash(form['password'])
         user_update.birth_day = form['bday']
         db.session.commit()

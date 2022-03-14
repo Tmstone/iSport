@@ -19,11 +19,11 @@ app.add_url_rule('/user/<id>/update', view_func=update_user, methods=['POST'])
 app.add_url_rule('/check/user', view_func=check_user)
 app.add_url_rule('/get/reset', view_func=get_reset, methods=['POST'])
 app.add_url_rule('/get/user/reset', view_func=get_password_page)
-# app.add_url_rule('/reset/user', view_function=reset, methods=[POST])
+app.add_url_rule('/reset/user', view_func=reset, methods=['POST'])
 
 #Event routes
 app.add_url_rule('/search', view_func=search)
-app.add_url_rule('/search/events', view_func=search_event,  methods=['POST'])
+app.add_url_rule('/search/events', view_func=search_event, methods=['POST'])
 app.add_url_rule('/event/<id>/join', view_func=like_event, methods=['POST'])
 app.add_url_rule('/new/event', view_func=new_event)
 app.add_url_rule('/add_event', view_func=add_event, methods=['POST'])

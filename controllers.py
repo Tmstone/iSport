@@ -38,7 +38,7 @@ def check_user():
 
 #check user credentials
 def get_reset():
-    valid, response = User.password_assist(request.form)
+    valid, response = User.verify_user(request.form)
     if not valid:
         flash(response)
         return redirect('/check/user')
@@ -53,8 +53,13 @@ def get_password_page():
     return render_template('password.html')
 
 #reset password
-#def reset(id):
 
+def reset():
+    valid, response = User.reset_user_password(request.form)
+    if not valid:
+        flash(response)
+        return redirect('/get/user/reset')
+    return redirect('/dashboard')
 
 ##adding first name
 def first():

@@ -24,32 +24,39 @@
     <script src="{{ url_for('static', filename='map.js') }}"></script>
   </head>
   <body>
-    <div class="col-6">
-      <h1>Forgot Password?</h1>
-      <p>
-        Enter the email address and date of birth you used to create your iSport
-        account.
-      </p>
-      {% with messages = get_flashed_messages() %} {% if messages %} {% for
-      message in messages %}
-      <p style="color: red; font-weight: bold">{{message}}</p>
-      {% endfor %} {% endif %} {% endwith %}
-      <hr />
-      <form action="/get/reset" method="post">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" value="" />
-        </div>
-        <div class="form-group">
-          <label for="birthday">Birthdate</label>
-          <input type="date" class="form-control" name="bday" value="" />
-        </div>
-        <input type="submit" class="btn btn-primary" value="Next" />
-      </form>
-      <hr />
-      <p>
-        <a href="/">Back to Sign in</a>
-      </p>
+    <div class="container">
+      <div classs="header">
+        <h1>iSport</h1>
+        <p>Free Pickup Game Finder and Organizer</p>
+        <hr />
+      </div>
+      <div class="col-6">
+        <h2>Forgot Password?</h2>
+        <p>
+          Enter the email address and date of birth you used to create your
+          iSport account.
+        </p>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <p style="color: red; font-weight: bold">{{message}}</p>
+        {% endfor %} {% endif %} {% endwith %}
+        <hr />
+        <form action="/get/reset" method="post">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" value="" />
+          </div>
+          <div class="form-group">
+            <label for="birthday">Birthdate</label>
+            <input type="date" class="form-control" name="bday" value="" />
+          </div>
+          <input type="submit" class="btn btn-primary" value="Next" />
+        </form>
+        <hr />
+        <p>
+          <a href="/">Back to Sign in</a>
+        </p>
+      </div>
     </div>
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
