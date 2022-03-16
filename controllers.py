@@ -53,12 +53,13 @@ def get_password_page():
     return render_template('password.html')
 
 #reset password
-
 def reset():
-    valid, response = User.reset_user_password(request.form)
-    if not valid:
-        flash(response)
+    errors = User.validate_password(request.form)
+    if errors:
+        for error in errors:
+            flash(error)
         return redirect('/get/user/reset')
+    change_password = User.reset_user_password(request.form)
     return redirect('/dashboard')
 
 ##adding first name

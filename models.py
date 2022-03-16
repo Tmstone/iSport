@@ -37,7 +37,21 @@ class User(db.Model):
         if not EMAIL_REGEX.match(form['email']):
             errors.append('Please enter a valid email address')
         if not PW_REGEX.match(request.form['password']):
-            flash('* Please enter a valid password: 6-20 characters, A-Z and (# $ % @ &)')
+            errors.append('* Please enter a valid password: 6-20 characters, A-Z and (# $ % @ &)')
+        return errors
+    
+    @classmethod
+    def validate_password(cls, form):
+        errors = []
+        if not PW_REGEX.match(request.form['password']):
+            errors.append('* Please enter a valid password: 6-20 characters, A-Z and (# $ % @ &)')
+        if not PW_REGEX.match(request.form['confirm']):
+            errors.append('* Please enter a valid password: 6-20 characters, A-Z and (# $ % @ &)')
+        new_password = form['password']
+        confirm_password = form['confirm']
+        #print(new_password, confirm_password)
+        if new_password != confirm_password:
+            errors.append('Passwords do not match')
         return errors
 
     @classmethod
@@ -80,12 +94,9 @@ class User(db.Model):
         reset_user_password = User.query.get(session['user_id'])
         print(reset_user_password.email)
         new_password = form['password']
-        confirm_password = form['confirm']
-        print(new_password, confirm_password)
-        if new_password is not confirm_password:
-            return (False, 'Passwords do not match')
         reset_user_password.pw_hash = bcrypt.generate_password_hash(new_password) 
         db.session.commit()
+        print('password reset')
         return reset_user_password.id
 
     @classmethod
